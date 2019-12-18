@@ -1,0 +1,19 @@
+package model;
+
+public class SalvarRespostasJogadores {
+	
+	private static SalvarRespostasJogadores uniqueInstance;
+	private static Xml xml;
+	
+	public SalvarRespostasJogadores() {
+		xml = new Xml();
+	}
+	
+	public static synchronized SalvarRespostasJogadores getInstance() {
+		if(uniqueInstance == null) {
+			uniqueInstance = new SalvarRespostasJogadores();
+		}
+		return uniqueInstance;	
+	}
+
+}

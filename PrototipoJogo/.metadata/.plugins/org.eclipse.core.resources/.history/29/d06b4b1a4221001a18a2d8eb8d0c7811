@@ -1,0 +1,12 @@
+package model;
+
+public class RespostaJogador {
+	
+	private String nomeJogador;
+	private String pontuacao;
+	
+	public RespostaJogador(String nomeJogador, String pontuacao) {
+		
+	}
+
+}

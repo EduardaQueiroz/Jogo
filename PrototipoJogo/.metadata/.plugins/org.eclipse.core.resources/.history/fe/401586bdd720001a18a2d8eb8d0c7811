@@ -1,0 +1,53 @@
+package model;
+
+import java.util.ArrayList;
+
+public class MontarQuestoes {
+	
+	private static MontarQuestoes uniqueInstance;
+	
+	private static Xml xml;
+	public static Questao questao;
+	
+	private MontarQuestoes(Questao questao, int codigoFase) {
+		xml = new Xml();
+		
+		xml.salvar(new Questao("Como são chamadas as 'raizes' das Briófitas?", "Filoides", "Rizoides", "Cauloides", 1, "Rizoides"));
+		xml.salvar(new Questao("O transporte de água e sais minerais pelas Briófitas acontece por:", "Sistema Vascular", "Célula a célula", "Floema", 1, "Célula a célula"));
+		xml.salvar(new Questao("Na reprodução das Briófitas, a geração duradoura é a:", "Gametofítica", "Esporófitica", "Anteridiofítica", 1, "Gametofítica"));
+		
+		xml.salvar(new Questao("Na reprodução das Pteridófitas, a geração duradoura é a do: ", "Gametófito", "Anteridiófito", "Esporófito", 2, "Esporófito"));
+		xml.salvar(new Questao("Marque a opção que NÃO contém um exemplo de Pteridófitas: ", "Samambaiaçú", "Avenca", "Hepática", 2, "Hepática"));
+		xml.salvar(new Questao("Marque a alternativa que explica o porque das Pteridófitas estarem mais distribuídas em ambientes úmidos: "
+				, "Porque dependem da água para que ocorra o encontro dos seus gametas", "Porque elas precisam de muito sol, e ele está mais presente em ambientes úmidos",
+				"Porque para produção dos gametas, por mitose, ela precisa de umidade", 2, "Porque dependem da água para que ocorra o encontro dos seus gametas"));
+		
+		xml.salvar(new Questao("'Os pássaros são importantes para a disseminação das Gminospermas pois elas possuem __________ que são dispersadas pelas aves.' Marque a opção que completa a frase:",
+				"Flores", "Sementes", "Folhas", 3, "Flores"));
+		xml.salvar(new Questao("As gminospermas podem ser monóicas ou dióicas. Elas são DIÓICAS quando:", "Tem os elementos reprodutores masculino e feminino em uma mesma árvore",
+				"Não tem os elementos reprodutores", "Tem os elementos reprodutores masculino e feminino em árvores separadas", 3, "Tem os elementos reprodutores masculino e feminino em árvores separadas"));
+		xml.salvar(new Questao("Sobre a reprodução das Gminospermas, o que é o GRÃO DE PÓLLEN?", "Gametófito masculino imaturo", "Óvulo", "Embrião", 3, "Gametófito masculino imaturo"));
+		
+		xml.salvar(new Questao("Qual a estrutura relacionada com a reprodução sexuada das Angiospermas?", "Sementes", "Frutos", "Flores", 4, "Flores"));
+		xml.salvar(new Questao("As angiospermas podem ser divididas em MONOCOTILEDÔNEAS e DICOTILEDÔNEAS. Quanto as raízes das Dicotiledôneas, elas são conhecidas como: ", "Raiz axial ou pivotante", "Raiz fasciculada", "Nenhuma das alternativas", 4, "Raiz axial ou pivotante"));
+		xml.salvar(new Questao("As flores das angiospermas apresentam Sépalas. O que são elas?", "As pétalas, mas com denominação diferente", "A aste que liga o caule da planta a flor", "Folhas geralmente verdes e pequenas que se situam na base da flor", 4, "Folhas geralmente verdes e pequenas que se situam na base da flor"));
+		
+	}
+	
+	public static synchronized MontarQuestoes getInstance(int codigoFase) {
+		if(uniqueInstance == null) {
+			uniqueInstance = new MontarQuestoes(codigoFase);
+		}
+		return uniqueInstance;
+	}
+	
+	public static void deletarQuestao(int codigo) {
+		xml.remover(codigo);
+	}
+	
+	public static Questao buscarQuestao(int codigo) {
+		questao = xml.buscar(codigo);
+		return questao;
+	}
+	
+}

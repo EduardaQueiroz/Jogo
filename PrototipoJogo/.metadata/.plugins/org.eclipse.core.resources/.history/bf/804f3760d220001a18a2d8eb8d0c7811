@@ -1,0 +1,18 @@
+package controller;
+
+import view.PanelCadastrarPerguntas;
+
+public class ControllerTelaCadPerguntas {
+	
+	private PanelCadastrarPerguntas panelCadastrarPerguntas;
+	
+	public ControllerTelaCadPerguntas(PanelCadastrarPerguntas panelCadastrarPerguntas) {
+		this.panelCadastrarPerguntas = panelCadastrarPerguntas;
+		control();
+	}
+	
+	public void control() {
+		
+	}
+
+}

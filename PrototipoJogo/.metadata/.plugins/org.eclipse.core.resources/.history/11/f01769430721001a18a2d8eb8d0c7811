@@ -1,0 +1,21 @@
+package controller;
+
+import view.FramePrincipal;
+import view.PanelListarExcluirPerguntas;
+
+public class ControllerTelaListarExcluirPergunta {
+	
+	private FramePrincipal framePrincipal;
+	private PanelListarExcluirPerguntas panelListarExcluirPerguntas;
+	
+	public ControllerTelaListarExcluirPergunta(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelListarExcluirPerguntas = framePrincipal.getPanelListarExcluirPerguntas();
+		control();
+	}
+	
+	public void control() {
+		
+	}
+
+}

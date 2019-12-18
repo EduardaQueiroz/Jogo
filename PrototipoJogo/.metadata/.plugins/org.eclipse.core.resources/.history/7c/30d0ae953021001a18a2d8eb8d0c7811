@@ -1,0 +1,49 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import view.Avisos;
+import view.FramePrincipal;
+import view.PanelEscolherJogador;
+
+public class ControllerEscolherPersonagem {
+	
+	private FramePrincipal framePrincipal;
+	private PanelEscolherJogador panelEscolherJogador;
+	private ControllerFases controllerFases;
+	private String caminhoPersonagem;
+	private String nomeJogador;
+	
+	public ControllerEscolherPersonagem(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelEscolherJogador = framePrincipal.getPanelEscolherJogador();
+		
+		control();
+	}
+	
+	public void control() {
+		panelEscolherJogador.getBtJogar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(panelEscolherJogador.getRdbtJogadorMulher().isSelected()) {
+					caminhoPersonagem = "view/imagens/persoMenina.png";
+				}else{
+					caminhoPersonagem = "view/imagens/persoMenino.png";
+				}
+				
+				nomeJogador = panelEscolherJogador.getTfNomeJogador().getText();
+				
+				if(panelEscolherJogador.getRdbtJogadorHomem().isSelected() || panelEscolherJogador.getRdbtJogadorMulher().isSelected()) {
+					controllerFases = new ControllerFases(framePrincipal, caminhoPersonagem, nomeJogador);
+					controllerFases.abrirFaseUm();
+				}else {
+					panelEscolherJogador.requestFocus();
+					Avisos.avisoTelaPersonagem();
+				}
+				
+			}
+		});
+	}
+
+}

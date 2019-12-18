@@ -1,0 +1,33 @@
+package model;
+
+import java.util.ArrayList;
+
+public class MontarQuestoes {
+	
+	private static MontarQuestoes uniqueInstance;
+	
+	private static Xml xml;
+	public static Questao questao;
+	
+	private MontarQuestoes(Questao questao, int codigoFase) {
+		xml = new Xml();
+		xml.salvar(questao);
+	}
+	
+	public static synchronized MontarQuestoes getInstance(Questao questao, int codigoFase) {
+		if(uniqueInstance == null) {
+			uniqueInstance = new MontarQuestoes(questao, codigoFase);
+		}
+		return uniqueInstance;
+	}
+	
+	public static void deletarQuestao(int codigo) {
+		xml.remover(codigo);
+	}
+	
+	public static Questao buscarQuestao(int codigo) {
+		questao = xml.buscar(codigo);
+		return questao;
+	}
+	
+}

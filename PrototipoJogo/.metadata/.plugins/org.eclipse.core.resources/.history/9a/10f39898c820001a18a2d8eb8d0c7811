@@ -1,0 +1,84 @@
+package view;
+
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class PanelConfig extends JPanel{
+	
+	private JLabel lblBackground;
+	
+	private ImageIcon imgBackground, imgBtRanking, imgBtSobre, imgBtCreditos, imgBtControle, imgCadPerguntas, imgBtVoltar;
+	
+	private JButton btRanking;
+	private JButton btSobre;
+	private JButton btCreditos;
+	private JButton btControle;
+	private JButton btCadPerguntas;
+	private JButton btVoltar;
+	
+	public PanelConfig() {
+		
+		setLayout(null);
+		
+		imgBackground = new ImageIcon(getClass().getResource("imagens/backConfig.png"));
+		imgBtRanking = new ImageIcon(getClass().getResource("imagens/ranking.png"));
+		imgBtSobre = new ImageIcon(getClass().getResource("imagens/sobre.png"));
+		imgBtCreditos = new ImageIcon(getClass().getResource("imagens/creditos.png"));
+		imgBtControle = new ImageIcon(getClass().getResource("imagens/controle.png"));
+		imgCadPerguntas = new ImageIcon(getClass().getResource("imagens/cadastrarPerguntas.png"));
+		imgBtVoltar = new ImageIcon(getClass().getResource("imagens/voltar.png"));
+		
+		btRanking = new JButton(imgBtRanking);
+		btSobre = new JButton(imgBtSobre);
+		btCreditos = new JButton(imgBtCreditos);
+		btControle = new JButton(imgBtControle);
+		btCadPerguntas = new JButton();
+		btVoltar = new JButton(imgBtVoltar);
+		
+		btRanking.setBounds(250, 150, 200, 80);
+		btSobre.setBounds(550, 150, 200, 80);
+		btCreditos.setBounds(250, 300, 200, 80);
+		btControle.setBounds(550, 300, 200, 80);
+		btVoltar.setBounds(400, 450, 200, 80);
+		
+		add(btRanking);
+		add(btSobre);
+		add(btCreditos);
+		add(btControle);
+		add(btVoltar);
+		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(imgBackground.getImage(), 0, 0, null);
+	}
+
+	public JButton getBtRanking() {
+		return btRanking;
+	}
+
+	public JButton getBtSobre() {
+		return btSobre;
+	}
+
+	public JButton getBtCreditos() {
+		return btCreditos;
+	}
+
+	public JButton getBtControle() {
+		return btControle;
+	}
+
+	public JButton getBtVoltar() {
+		return btVoltar;
+	}
+	
+	
+
+}

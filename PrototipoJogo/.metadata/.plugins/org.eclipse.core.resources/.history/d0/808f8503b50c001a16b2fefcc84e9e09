@@ -1,0 +1,14 @@
+package view;
+
+import javax.swing.JFrame;
+
+public class Tela extends JFrame{
+	
+	public Tela() {
+		setSize(800, 608);
+		
+		setVisible(true);
+	}
+	
+
+}

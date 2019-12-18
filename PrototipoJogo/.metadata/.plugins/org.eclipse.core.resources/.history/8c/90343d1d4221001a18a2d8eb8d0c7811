@@ -1,0 +1,21 @@
+package model;
+
+public class GerenciarRespostasJogadores {
+	
+	private static GerenciarRespostasJogadores uniqueInstance;
+	private static XmlRespostas xml;
+	
+	public GerenciarRespostasJogadores() {
+		xml = new XmlRespostas();
+	}
+	
+	public static synchronized GerenciarRespostasJogadores getInstance() {
+		if(uniqueInstance == null) {
+			uniqueInstance = new GerenciarRespostasJogadores();
+		}
+		return uniqueInstance;	
+	}
+	
+	
+
+}

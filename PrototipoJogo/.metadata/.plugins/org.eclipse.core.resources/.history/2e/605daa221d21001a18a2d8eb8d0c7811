@@ -1,0 +1,125 @@
+package model;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.Dom4JDriver;
+
+public class Xml {
+	
+	private List<Questao> questoes;
+	private File file;
+	private XStream xStream;
+	
+	public Xml() {
+		questoes = new ArrayList<>();
+		
+		xStream = new XStream(new Dom4JDriver());
+		xStream.alias("Questao", Questao.class);
+		
+		file = new File("src/txts/questoes.xml");
+	}
+	
+	public void salvar(Questao questao) {
+		questoes.add(questao);
+		
+		try {
+			if(!file.exists()) {
+				file.createNewFile();
+			}else {
+				file.delete();
+				file.createNewFile();
+			}
+			
+			OutputStream stream = new FileOutputStream(file);
+			xStream.toXML(questoes, stream);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Questao> ler(){
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}else {
+				return (ArrayList<Questao>) xStream.fromXML(file);		
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public void remover(int cod){
+		Questao temp = buscar(cod);
+		
+		if(temp != null){
+			questoes.remove(temp);
+			
+			try {
+				if (!file.exists())
+					file.createNewFile();
+				else {
+					file.delete();
+					file.createNewFile();
+				}
+				
+				OutputStream stream = new FileOutputStream(file);
+				xStream.toXML(questoes, stream);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void removerPorIndice(int indice){
+		//Questao temp = buscar(cod);
+		
+		if(indice != null){
+			questoes.remove(indice);
+			
+			try {
+				if (!file.exists())
+					file.createNewFile();
+				else {
+					file.delete();
+					file.createNewFile();
+				}
+				
+				OutputStream stream = new FileOutputStream(file);
+				xStream.toXML(questoes, stream);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public Questao buscar(int cod){
+		for (Questao ques : questoes) {
+			if(ques.getFase() == cod){
+				return ques;
+			}
+		}
+		return null;
+	}	
+	
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+	
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+	
+}

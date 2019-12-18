@@ -1,0 +1,46 @@
+package model;
+
+import java.util.ArrayList;
+
+public class MontarQuestoes {
+	
+	private static MontarQuestoes uniqueInstance;
+	
+	private static Xml xml;
+	public static Questao questao;
+	
+	private MontarQuestoes() {
+		xml = new Xml();
+		
+	}
+	
+	public static synchronized MontarQuestoes getInstance() {
+		if(uniqueInstance == null) {
+			uniqueInstance = new MontarQuestoes();
+		}
+		return uniqueInstance;
+	}
+	
+	public static void deletarQuestao(int codigo) {
+		xml.remover(codigo);
+	}
+	
+	public static Questao buscarQuestao(int codigo) {
+		ArrayList<Questao> questoesBanco = pegarQuestoes();
+		xml.setQuestoes(questoesBanco);
+		questao = xml.buscar(codigo);
+		return questao;
+	}
+	
+	public static boolean salvarQuestao(Questao questao) {
+		ArrayList<Questao> questoesBanco = pegarQuestoes();
+		xml.setQuestoes(questoesBanco);
+		xml.salvar(questao);
+		return true;
+	}
+	
+	public static ArrayList<Questao> pegarQuestoes() {
+		ArrayList<Questao> questoesBanco = (ArrayList<Questao>) xml.ler();
+		return questoesBanco;
+	}
+}

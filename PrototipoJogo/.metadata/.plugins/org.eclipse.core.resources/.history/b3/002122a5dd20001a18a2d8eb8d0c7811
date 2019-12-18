@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<list>
+  <Questao>
+    <enunciado>pergunta 1</enunciado>
+    <op1>1</op1>
+    <op2>2</op2>
+    <op3>3</op3>
+    <fase>1</fase>
+    <respostaCerta>2</respostaCerta>
+  </Questao>
+</list>

@@ -1,0 +1,39 @@
+package model;
+
+public class RespostaJogador {
+	
+	private String nomeJogador;
+	private String respostaMarcada;
+	private int codPergunta;
+	
+	public RespostaJogador(String nomeJogador, String respostaMarcada, int codPergunta) {
+		this.nomeJogador = nomeJogador;
+		this.respostaMarcada = respostaMarcada;
+		this.codPergunta = codPergunta;
+	}
+
+	public String getNomeJogador() {
+		return nomeJogador;
+	}
+
+	public void setNomeJogador(String nomeJogador) {
+		this.nomeJogador = nomeJogador;
+	}
+
+	public String getRespostaMarcada() {
+		return respostaMarcada;
+	}
+
+	public void setRespostaMarcada(String respostaMarcada) {
+		this.respostaMarcada = respostaMarcada;
+	}
+
+	public int getCodPergunta() {
+		return codPergunta;
+	}
+
+	public void setCodPergunta(int codPergunta) {
+		this.codPergunta = codPergunta;
+	}
+	
+}

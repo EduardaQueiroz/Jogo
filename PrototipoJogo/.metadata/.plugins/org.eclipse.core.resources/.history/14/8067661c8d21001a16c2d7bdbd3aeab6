@@ -1,0 +1,32 @@
+package model;
+
+import java.util.ArrayList;
+
+public class GerenciarRespostasJogadores {
+	
+	private static GerenciarRespostasJogadores uniqueInstance;
+	private static XmlRespostas xml;
+	
+	public GerenciarRespostasJogadores() {
+		xml = new XmlRespostas();
+	}
+	
+	public static synchronized GerenciarRespostasJogadores getInstance() {
+		if(uniqueInstance == null) {
+			uniqueInstance = new GerenciarRespostasJogadores();
+		}
+		return uniqueInstance;	
+	}
+	
+	public static boolean salvarQuestao(Resposta resposta) {
+		ArrayList<Questao> questoesBanco = pegarQuestoes();
+		xml.setQuestoes(questoesBanco);
+		xml.salvar(questao);
+		return true;
+	}
+	
+	public static ArrayList<Questao> pegarQuestoes() {
+		ArrayList<Questao> questoesBanco = (ArrayList<Questao>) xml.ler();
+		return questoesBanco;
+	}
+}

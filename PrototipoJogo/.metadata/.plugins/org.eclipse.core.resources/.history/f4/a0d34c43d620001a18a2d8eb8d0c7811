@@ -1,0 +1,102 @@
+package view;
+
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class PanelCadastrarPerguntas extends JPanel{
+	
+	private ImageIcon imgBack, imgBtSalvar, imgBtVoltar;
+	private JTextArea txaPergunta;
+	private JTextField tfOpUm, tfOpDois, tfOpTres;
+	private JComboBox<String> cbRespostaCerta, cbFase;
+	private JButton btSalvar, btVoltar;
+	
+	public PanelCadastrarPerguntas() {
+		setLayout(null);
+		
+		imgBack = new ImageIcon(getClass().getResource("imagens/backCadPerguntas.png"));
+		imgBtSalvar = new ImageIcon(getClass().getResource("imagens/salvar.png"));
+		imgBtVoltar = new ImageIcon(getClass().getResource("imagens/voltar.png"));
+		
+		txaPergunta = new JTextArea(2, 5);
+		tfOpUm = new JTextField(100);
+		tfOpDois = new JTextField(100);
+		tfOpTres = new JTextField(100);
+		cbRespostaCerta = new JComboBox<>();
+		cbFase = new JComboBox<>();
+		btSalvar = new JButton(imgBtSalvar);
+		btVoltar = new JButton(imgBtVoltar);
+		
+		txaPergunta.setBounds(310, 150, 500, 100);
+		tfOpUm.setBounds(310, 265, 500, 40);
+		tfOpDois.setBounds(310, 315, 500, 40);
+		tfOpTres.setBounds(310, 365, 500, 40);
+		cbRespostaCerta.setBounds(375, 435, 200, 40);
+		cbFase.setBounds(680, 435, 200, 40);
+		btSalvar.setBounds(300, 540, 200, 60);
+		btVoltar.setBounds(530, 540, 200, 60);
+		
+		cbRespostaCerta.addItem("Opção 1");
+		cbRespostaCerta.addItem("Opção 2");
+		cbRespostaCerta.addItem("Opção 3");
+		
+		cbFase.addItem("Briófitas");
+		cbFase.addItem("Pteridófitas");
+		cbFase.addItem("Gimnospermas");
+		cbFase.addItem("Angiospermas");
+		
+		txaPergunta.setFont(new Font("Times new Roman", Font.ITALIC, 20));
+		cbRespostaCerta.setFont(new Font("Times new Roman", Font.BOLD, 20));
+		cbFase.setFont(new Font("Times new Roman", Font.BOLD, 20));
+		
+		add(txaPergunta);
+		add(tfOpUm);
+		add(tfOpDois);
+		add(tfOpTres);
+		add(cbRespostaCerta);
+		add(cbFase);
+		add(btSalvar);
+		add(btVoltar);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(imgBack.getImage(), 0, 0, null);
+	}
+
+	public JTextArea getTxaPergunta() {
+		return txaPergunta;
+	}
+
+	public JTextField getTfOpUm() {
+		return tfOpUm;
+	}
+
+	public JTextField getTfOpDois() {
+		return tfOpDois;
+	}
+
+	public JTextField getTfOpTres() {
+		return tfOpTres;
+	}
+
+	public JComboBox<String> getCbRespostaCerta() {
+		return cbRespostaCerta;
+	}
+
+	public JButton getBtSalvar() {
+		return btSalvar;
+	}
+
+	public JButton getBtVoltar() {
+		return btVoltar;
+	}
+	
+}

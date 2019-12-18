@@ -1,0 +1,140 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import model.Camada;
+import model.Cesto;
+import model.Inimigo;
+import model.JuntarCamadas;
+import model.JuntarCestos;
+import model.JuntarInimigos;
+import model.MontarFase;
+import model.Personagem;
+import view.PanelConfig;
+import view.PanelControle;
+import view.PanelCreditos;
+import view.PanelPrincipal;
+import view.PanelRanking;
+import view.PanelSobre;
+import view.FramePrincipal;
+import view.FrameQuestoes;
+import view.PanelFases;
+
+public class ControllerTelaPrincipal {
+	
+	FramePrincipal framePrincipal;
+	PanelPrincipal panelPrincipal;
+	PanelConfig panelConfig;
+	PanelRanking panelRanking;
+	PanelSobre panelSobre;
+	PanelCreditos panelCreditos;
+	PanelControle panelControle;
+	
+	
+	ControllerDesenharMapa controllerFases;
+	ControllerPersonagem controllerPersonagem;
+	ControllerEscolherPersonagem controllerEscolherPersonagem;
+	
+	public ControllerTelaPrincipal(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelPrincipal = framePrincipal.getPanelPrincipal();
+		this.panelConfig = framePrincipal.getPanelConfig();
+		this.panelRanking = framePrincipal.getPanelRanking();
+		this.panelSobre = framePrincipal.getPanelSobre();
+		this.panelCreditos = framePrincipal.getPanelCreditos();
+		this.panelControle = framePrincipal.getPanelControle();
+		
+		control();
+	}
+	
+	public void control() {
+		panelPrincipal.getBtJogar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pEscJog");
+				controllerEscolherPersonagem = new ControllerEscolherPersonagem(framePrincipal);
+
+			}
+		});
+		
+		panelPrincipal.getBtConfig().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+		
+		panelPrincipal.getBtSair().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		//Ações dos Botões de Configurações
+		
+		panelConfig.getBtRanking().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pRank");
+			}
+		});
+		
+		panelConfig.getBtSobre().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pSbr");
+			}
+		});
+		
+		panelConfig.getBtCreditos().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pCred");
+			}
+		});
+		
+		panelConfig.getBtControle().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pContr");
+			}
+		});
+		
+		panelConfig.getBtCadPerguntas().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pCadPerg");
+			}
+		});
+		
+		panelConfig.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pPrinci");
+				
+			}
+		});
+		
+		//Ação do Botão Voltar de Ranking
+		
+		panelRanking.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+		
+		//Ação do botão voltar de sobre
+		
+		panelSobre.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+		
+		//Ação do botão voltar créditos
+		panelCreditos.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+	}
+
+}

@@ -1,0 +1,37 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import view.FramePrincipal;
+import view.PanelCadastrarPerguntas;
+
+public class ControllerTelaCadPerguntas {
+	
+	private FramePrincipal framePrincipal;
+	private PanelCadastrarPerguntas panelCadastrarPerguntas;
+	
+	public ControllerTelaCadPerguntas(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelCadastrarPerguntas = framePrincipal.getPanelCadastrarPerguntas();
+		control();
+	}
+	
+	public void control() {
+		panelCadastrarPerguntas.getBtSalvar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		panelCadastrarPerguntas.getBtVoltar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+	}
+
+}

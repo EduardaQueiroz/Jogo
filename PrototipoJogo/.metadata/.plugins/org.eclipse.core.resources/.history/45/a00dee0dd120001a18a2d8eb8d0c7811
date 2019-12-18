@@ -1,0 +1,57 @@
+package view;
+
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class PanelCadastrarPerguntas extends JPanel{
+	
+	private ImageIcon imgBack, imgBtSalvar, imgBtVoltar;
+	private JTextArea txaPergunta;
+	private JTextField tfOpUm, tfOpDois, tfOpTres;
+	private JComboBox<String> cbRespostaCerta;
+	private JButton btSalvar, btVoltar;
+	
+	public PanelCadastrarPerguntas() {
+		setLayout(null);
+		
+		imgBack = new ImageIcon(getClass().getResource("imagens/backCadPerguntas.png"));
+		imgBtSalvar = new ImageIcon(getClass().getResource("imagens/salvar.png"));
+		imgBtVoltar = new ImageIcon(getClass().getResource("imagens/voltar.png"));
+		
+		txaPergunta = new JTextArea(2, 5);
+		tfOpUm = new JTextField(100);
+		tfOpDois = new JTextField(100);
+		tfOpTres = new JTextField(100);
+		cbRespostaCerta = new JComboBox<>();
+		btSalvar = new JButton(imgBtSalvar);
+		btVoltar = new JButton(imgBtVoltar);
+		
+		txaPergunta.setBounds(320, 150, 490, 100);
+		tfOpUm.setBounds(310, 265, 500, 40);
+		tfOpDois.setBounds(310, 315, 500, 40);
+		tfOpTres.setBounds(310, 365, 500, 40);
+		cbRespostaCerta.setBounds(510, 430, 200, 40);
+		
+		btVoltar.setBounds(650, 540, 200, 60);
+		
+		add(txaPergunta);
+		add(tfOpUm);
+		add(tfOpDois);
+		add(tfOpTres);
+		add(cbRespostaCerta);
+		add(btSalvar);
+		add(btVoltar);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(imgBack.getImage(), 0, 0, null);
+	}
+
+}

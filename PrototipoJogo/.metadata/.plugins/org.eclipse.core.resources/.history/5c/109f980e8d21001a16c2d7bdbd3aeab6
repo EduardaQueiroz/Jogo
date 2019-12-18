@@ -1,0 +1,70 @@
+package model;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.Dom4JDriver;
+
+public class XmlRespostas {
+	
+	private List<RespostaJogador> respostasJogadores;
+	private File file;
+	private XStream xStream;
+	
+	public XmlRespostas() {
+		respostasJogadores = new ArrayList<>();
+		
+		xStream = new XStream(new Dom4JDriver());
+		xStream.alias("RespostaJogador", RespostaJogador.class);
+		
+		file = new File("src/txts/respostasJogadores.xml");
+	}
+	
+	public void salvar(RespostaJogador pontuacao) {
+		pontuacoes.add(pontuacao);
+		try {
+			if (!file.exists())
+				file.createNewFile();
+			else {
+				file.delete();
+				file.createNewFile();
+			}
+				
+			OutputStream stream = new FileOutputStream(file);
+			xStream.toXML(pontuacoes, stream);
+				
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<RespostaJogador> ler(){
+		try {
+			if (!file.exists())
+				file.createNewFile();
+			else {
+				
+				this.pontuacoes = (ArrayList<RespostaJogador>) xStream.fromXML(file);
+				
+				return this.pontuacoes;
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+
+		return null;
+		
+	}
+
+	public List<RespostaJogador> getPontuacoes() {
+		return pontuacoes;
+	}
+
+}

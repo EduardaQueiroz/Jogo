@@ -1,0 +1,15 @@
+package model;
+
+public class RespostaJogador {
+	
+	private String nomeJogador;
+	private String respostaMarcada;
+	private int codPergunta;
+	
+	public RespostaJogador(String nomeJogador, String respostaMarcada, int codPergunta) {
+		this.nomeJogador = nomeJogador;
+		this.respostaMarcada = respostaMarcada;
+		this.codPergunta = codPergunta;
+	}
+
+}

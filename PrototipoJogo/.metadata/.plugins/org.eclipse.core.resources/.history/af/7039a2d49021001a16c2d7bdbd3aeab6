@@ -1,0 +1,71 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.GerenciarRespostasJogadores;
+import model.Questao;
+import model.RespostaJogador;
+import view.Avisos;
+import view.FramePrincipal;
+import view.FrameQuestoes;
+import view.PanelFases;
+import view.PanelPrincipal;
+import view.PanelQuestoes;
+
+public class ControllerTelaQuestoes {
+	
+	private FramePrincipal framePrincipal;
+	private PanelFases panelFases;
+	private FrameQuestoes frameQuestoes;
+	private PanelQuestoes panelQuestoes;
+	
+	private Questao questao;
+	private int pontuacao = 0;
+	
+	public ControllerTelaQuestoes(FramePrincipal framePrincipal, FrameQuestoes frameQuestoes, Questao questao) {
+		this.framePrincipal = framePrincipal;
+		this.panelFases = framePrincipal.getPanelFase();
+		this.frameQuestoes = frameQuestoes;
+		this.panelQuestoes = frameQuestoes.getPanelQuestao();
+		this.questao = questao;
+		
+		control();
+	}
+	
+	public void control() {
+		panelQuestoes.getBtResponder().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String pergunta = questao.getEnunciado();
+				
+				if(panelQuestoes.getRdbtOpUm().isSelected()) {
+					String nomeJogador = framePrincipal.getPanelEscolherJogador().getTfNomeJogador().getText();
+					String resposta = panelQuestoes.getRdbtOpUm().getText();
+					
+					RespostaJogador resposta = new RespostaJogador(nomeJogador, resposta, pergunta);
+						
+				}else if(panelQuestoes.getRdbtOpDois().isSelected()) {
+					
+						
+				}else if(panelQuestoes.getRdbtOpTres().isSelected()) {
+					
+						
+				}else {
+					Avisos.mensagemNadaSelecionado();
+				}
+				
+				panelFases.getTxaPontuacao().setText(""+pontuacao);
+				panelQuestoes.getRdbtOpUm().setSelected(false);
+				panelQuestoes.getRdbtOpDois().setSelected(false);
+				panelQuestoes.getRdbtOpTres().setSelected(false);
+				frameQuestoes.setVisible(false);
+				//panelQuestoes.setarDefault();
+			}
+		});
+	}
+	
+	
+
+}

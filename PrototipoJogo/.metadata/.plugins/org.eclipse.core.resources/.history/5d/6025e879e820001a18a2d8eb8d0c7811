@@ -1,0 +1,90 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.MontarQuestoes;
+import model.Questao;
+import view.FramePrincipal;
+import view.PanelCadastrarPerguntas;
+
+public class ControllerTelaCadPerguntas {
+	
+	private FramePrincipal framePrincipal;
+	private PanelCadastrarPerguntas panelCadastrarPerguntas;
+	
+	int contadorFaseUm = 0;
+	int contadorFaseDois = 0;
+	int contadorFaseTres = 0;
+	int contadorFaseQuatro = 0;
+	
+	public ControllerTelaCadPerguntas(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelCadastrarPerguntas = framePrincipal.getPanelCadastrarPerguntas();
+		control();
+	}
+	
+	public void control() {
+		panelCadastrarPerguntas.getBtSalvar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String enunciado = panelCadastrarPerguntas.getTxaPergunta().getText();
+				String op1 = panelCadastrarPerguntas.getTfOpUm().getText();
+				String op2 = panelCadastrarPerguntas.getTfOpDois().getText();
+				String op3 = panelCadastrarPerguntas.getTfOpTres().getText();
+				int fase = 0;
+				String respostaCerta = "";
+				
+				if(panelCadastrarPerguntas.getCbFase().getSelectedItem().equals("Briófitas")) {
+					fase = 1;
+					contadorFaseUm += 1;
+				}else if(panelCadastrarPerguntas.getCbFase().getSelectedItem().equals("Pteridófitas")) {
+					fase = 2;
+					contadorFaseDois += 1;
+				}else if(panelCadastrarPerguntas.getCbFase().getSelectedItem().equals("Gimnospermas")) {
+					fase = 3;
+					contadorFaseTres += 1;
+				}else {
+					fase = 4;
+					contadorFaseQuatro += 1;
+				}
+				
+				if(panelCadastrarPerguntas.getCbRespostaCerta().getSelectedItem().equals("Opção 1")) {
+					respostaCerta = op1;
+				}else if(panelCadastrarPerguntas.getCbRespostaCerta().getSelectedItem().equals("Opção 2")) {
+					respostaCerta = op2;
+				}else{
+					respostaCerta = op3;
+				}
+				
+				Questao questao = new Questao(enunciado, op1, op2, op3, fase, respostaCerta);
+				System.out.println(questao);
+				MontarQuestoes.getInstance().salvarQuestao(questao);
+				framePrincipal.show("pConfig");
+				
+				if(contadorFaseUm == 3) {
+					panelCadastrarPerguntas.getCbRespostaCerta().removeItem("Briófitas");
+				}else if(contadorFaseDois == 3) {
+					panelCadastrarPerguntas.getCbRespostaCerta().removeItem("Pteridófitas");
+				}else if(contadorFaseTres == 3) {
+					panelCadastrarPerguntas.getCbRespostaCerta().removeItem("Gimnospermas");
+				}else if(contadorFaseQuatro == 3) {
+					panelCadastrarPerguntas.getCbRespostaCerta().removeItem("Angiospermas");
+				}
+				
+				panelCadastrarPerguntas.getTxaPergunta().setText("");
+				panelCadastrarPerguntas.getTfOpUm().setText("");
+				panelCadastrarPerguntas.getTfOpDois().setText("");
+				panelCadastrarPerguntas.getTfOpTres().setText("");
+			}
+		});
+		
+		panelCadastrarPerguntas.getBtVoltar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+	}
+
+}

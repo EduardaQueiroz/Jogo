@@ -1,0 +1,59 @@
+package view;
+
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+public class PanelEscolherJogador extends JPanel{
+	
+	private JLabel lblMoldura, lblPersoMenina, lblPersoMenino;
+	private ImageIcon imgBackground, imgBtJogar, imgMoldura, imgPersoMenina, imgPersoMenino;
+	private JTextField tfNomeJogador;
+	private JButton btJogar;
+	
+	public PanelEscolherJogador() {
+		
+		setSize(1000, 608);
+		setLayout(null);
+		
+		imgMoldura = new ImageIcon(getClass().getResource("imagens/moldura.png"));
+		imgPersoMenina = new ImageIcon(getClass().getResource("imagens/imgPersoMenina"));
+		imgPersoMenino = new ImageIcon(getClass().getResource("imagens/imgPersoMenino"));
+		imgBackground = new ImageIcon(getClass().getResource("imagens/telaEscolherJogador.png"));
+		imgBtJogar = new ImageIcon(getClass().getResource("imagens/jogar_.png"));
+		
+		lblMoldura = new JLabel(imgMoldura);
+		tfNomeJogador = new JTextField();
+		btJogar = new JButton(imgBtJogar);
+		
+		tfNomeJogador.setFont(new Font("Times new Roman", Font.BOLD, 20));
+		
+		tfNomeJogador.setBounds(400, 485, 300, 40);
+		btJogar.setBounds(760, 520, 200, 60);
+		
+		add(tfNomeJogador);
+		add(btJogar);
+		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(imgBackground.getImage(), 0, 0, null);
+	}
+	
+	public JTextField getTfNomeJogador() {
+		return tfNomeJogador;
+	}
+
+	public JButton getBtJogar() {
+		return btJogar;
+	}
+
+}

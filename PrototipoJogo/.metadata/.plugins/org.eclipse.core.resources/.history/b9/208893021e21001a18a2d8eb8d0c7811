@@ -1,0 +1,41 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.MontarQuestoes;
+import view.FramePrincipal;
+import view.PanelListarExcluirPerguntas;
+
+public class ControllerTelaListarExcluirPergunta {
+	
+	private FramePrincipal framePrincipal;
+	private PanelListarExcluirPerguntas panelListarExcluirPerguntas;
+	
+	public ControllerTelaListarExcluirPergunta(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelListarExcluirPerguntas = framePrincipal.getPanelListarExcluirPerguntas();
+		control();
+	}
+	
+	public void control() {
+		panelListarExcluirPerguntas.getBtVoltar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+		
+		panelListarExcluirPerguntas.getBtExcluir().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int i = 1;
+				while(i <= 12) {
+					if(panelListarExcluirPerguntas.getCbQuestaoExcluir().getSelectedIndex()+1 == i)
+						MontarQuestoes.deletarPorIndice(0);
+				}
+			}
+		});
+	}
+
+}

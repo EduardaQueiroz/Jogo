@@ -19,9 +19,8 @@ public class GerenciarRespostasJogadores {
 	}
 	
 	public static boolean salvarResposta(RespostaJogador resposta) {
-		System.out.println(resposta);
-		ArrayList<RespostaJogador> questoesBanco = pegarRespostas();
-		xml.setRespostasJogadores(questoesBanco);
+		ArrayList<RespostaJogador> respostasBanco = pegarRespostas();
+		xml.setRespostasJogadores(respostasBanco);
 		xml.salvar(resposta);
 		return true;
 	}

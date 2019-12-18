@@ -24,6 +24,7 @@ public class FramePrincipal extends JFrame{
 	private PanelControle panelControle;
 	private PanelCadastrarPerguntas panelCadastrarPerguntas;
 	private PanelListarExcluirPerguntas panelListarExcluirPerguntas;
+	private PanelListarRespostasJogadores panelListarRespostasJogadores;
 	
 	private PanelEscolherJogador panelEscolherJogador;
 	
@@ -51,7 +52,7 @@ public class FramePrincipal extends JFrame{
 		panelControle = new PanelControle();
 		panelCadastrarPerguntas = new PanelCadastrarPerguntas();
 		panelListarExcluirPerguntas = new PanelListarExcluirPerguntas();
-		
+		panelListarRespostasJogadores = new PanelListarRespostasJogadores();
 		panelEscolherJogador = new PanelEscolherJogador();
 		panelFase = new PanelFases("imagens/barraLateral1.png");
 		panelFaseDois = new PanelFases("imagens/barraLateral2.png");
@@ -65,7 +66,7 @@ public class FramePrincipal extends JFrame{
 		add(panelControle, "pContr");
 		add(panelCadastrarPerguntas, "pCadPerg");
 		add(panelListarExcluirPerguntas, "pListExcPerg");
-		
+		add(panelListarRespostasJogadores, "pListResp");
 		add(panelEscolherJogador, "pEscJog");
 		
 		add(panelFase, "pfu");
@@ -118,5 +119,10 @@ public class FramePrincipal extends JFrame{
 	public PanelEscolherJogador getPanelEscolherJogador() {
 		return panelEscolherJogador;
 	}
+
+	public PanelListarRespostasJogadores getPanelListarRespostasJogadores() {
+		return panelListarRespostasJogadores;
+	}
+	
 
 }

@@ -36,8 +36,13 @@ public class ControllerEscolherPersonagem implements MouseListener{
 				nomeJogador = panelEscolherJogador.getTfNomeJogador().getText();
 				
 				if(panelEscolherJogador.getLblMoldura().isVisible() || panelEscolherJogador.getLblMoldura2().isVisible()) {
-					controllerFases = new ControllerFases(framePrincipal, caminhoPersonagem, nomeJogador);
-					controllerFases.abrirFaseUm();
+					if(!panelEscolherJogador.getTfNomeJogador().getText().equalsIgnoreCase("")) {
+						controllerFases = new ControllerFases(framePrincipal, caminhoPersonagem, nomeJogador);
+						controllerFases.abrirFaseUm();
+					}else {
+						Avisos.messagemCampoNomeVazio();
+					}
+						
 				}else {
 					panelEscolherJogador.requestFocus();
 					Avisos.avisoTelaPersonagem();

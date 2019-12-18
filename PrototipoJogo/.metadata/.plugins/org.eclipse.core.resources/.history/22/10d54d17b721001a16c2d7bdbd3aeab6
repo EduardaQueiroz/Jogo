@@ -1,0 +1,16 @@
+package controller;
+
+import view.FramePrincipal;
+import view.PanelListarRespostasJogadores;
+
+public class ControllerTelaListarRespostasJogadores {
+	
+	private FramePrincipal framePrincipal;
+	private PanelListarRespostasJogadores panelListarRespostasJogadores;
+	
+	public ControllerTelaListarRespostasJogadores(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelListarRespostasJogadores = framePrincipal.getPanelListarRespostasJogadores();
+	}
+
+}

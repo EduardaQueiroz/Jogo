@@ -36,4 +36,8 @@ public class RespostaJogador {
 		this.pergunta = pergunta;
 	}
 	
+	@Override
+	public String toString() {
+		return "Pergunta: " + pergunta + "// Resposta: " + respostaMarcada;
+	}
 }

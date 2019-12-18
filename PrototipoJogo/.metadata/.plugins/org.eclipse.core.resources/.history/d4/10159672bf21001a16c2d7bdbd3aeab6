@@ -1,0 +1,223 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import model.Camada;
+import model.Cesto;
+import model.Inimigo;
+import model.JuntarCamadas;
+import model.JuntarCestos;
+import model.JuntarInimigos;
+import model.MontarFase;
+import model.GerenciarQuestoes;
+import model.Personagem;
+import model.Questao;
+import view.PanelConfig;
+import view.PanelControle;
+import view.PanelCreditos;
+import view.PanelPrincipal;
+import view.PanelRanking;
+import view.PanelSobre;
+import view.FramePrincipal;
+import view.FrameQuestoes;
+import view.PanelCadastrarPerguntas;
+import view.PanelFases;
+import view.PanelListarExcluirPerguntas;
+
+public class ControllerTelaPrincipal {
+	
+	static FramePrincipal framePrincipal;
+	PanelPrincipal panelPrincipal;
+	static PanelConfig panelConfig;
+	PanelRanking panelRanking;
+	PanelSobre panelSobre;
+	PanelCreditos panelCreditos;
+	PanelControle panelControle;
+	
+	
+	ControllerDesenharMapa controllerFases;
+	ControllerPersonagem controllerPersonagem;
+	ControllerEscolherPersonagem controllerEscolherPersonagem;
+	
+	static PanelCadastrarPerguntas panelCadastrarPerguntas;
+	static PanelListarExcluirPerguntas panelListarExcluirPerguntas;
+	
+	public ControllerTelaPrincipal(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelPrincipal = framePrincipal.getPanelPrincipal();
+		this.panelConfig = framePrincipal.getPanelConfig();
+		this.panelRanking = framePrincipal.getPanelRanking();
+		this.panelSobre = framePrincipal.getPanelSobre();
+		this.panelCreditos = framePrincipal.getPanelCreditos();
+		this.panelControle = framePrincipal.getPanelControle();
+		this.panelCadastrarPerguntas = framePrincipal.getPanelCadastrarPerguntas();
+		this.panelListarExcluirPerguntas = framePrincipal.getPanelListarExcluirPerguntas();
+		control();
+	}
+	
+	public void control() {
+		panelPrincipal.getBtJogar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pEscJog");
+				controllerEscolherPersonagem = new ControllerEscolherPersonagem(framePrincipal);
+
+			}
+		});
+		
+		panelPrincipal.getBtConfig().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+		
+		panelPrincipal.getBtSair().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		//Ações dos Botões de Configurações
+		
+		panelConfig.getBtRanking().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pRank");
+			}
+		});
+		
+		panelConfig.getBtSobre().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pSbr");
+			}
+		});
+		
+		panelConfig.getBtCreditos().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pCred");
+			}
+		});
+		
+		panelConfig.getBtControle().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pContr");
+			}
+		});
+		
+		panelConfig.getBtCadPerguntas().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				verificarComboBoxQuestoes();
+				framePrincipal.show("pCadPerg");
+				ControllerTelaCadPerguntas controllerTelaCadPerguntas = new ControllerTelaCadPerguntas(framePrincipal);
+			}
+		});
+		
+		panelConfig.getBtListarExcluirPerguntas().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listarPerguntas();
+				//addItemComboBox(qtd);
+				framePrincipal.show("pListExcPerg");
+				System.out.println("oi");
+				ControllerTelaListarExcluirPergunta controllerTelaListarExcluirPergunta = new ControllerTelaListarExcluirPergunta(framePrincipal);
+				
+			}
+		});
+		
+		panelConfig.getBtListarRespostas().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pListResp");
+				ControllerTelaListarRespostasJogadores controllerTelaListarRespostasJogadores = new ControllerTelaListarRespostasJogadores(framePrincipal);
+			}
+		});
+		
+		panelConfig.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pPrinci");
+				
+			}
+		});
+		
+		//Ação do Botão Voltar de Ranking
+		
+		panelRanking.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+		
+		//Ação do botão voltar de sobre
+		
+		panelSobre.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+		
+		//Ação do botão voltar créditos
+		panelCreditos.getBtVoltar().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+				
+			}
+		});
+	}
+	
+	public static void verificarComboBoxQuestoes() {
+		int contadorFaseUm = 0;
+		int contadorFaseDois = 0;
+		int contadorFaseTres = 0;
+		int contadorFaseQuatro = 0;
+		
+		ArrayList<Questao> questoesBanco = GerenciarQuestoes.getInstance().pegarQuestoes();
+		for(Questao questao_ : questoesBanco) {
+			if(questao_.getFase() == 1) {
+				contadorFaseUm += 1;
+			}else if(questao_.getFase() == 2) {
+				contadorFaseDois += 1;
+			}else if(questao_.getFase() == 3) {
+				contadorFaseTres += 1;
+			}else {
+				contadorFaseQuatro += 1;
+			}
+		}
+		
+		System.out.println(contadorFaseUm);
+		System.out.println(contadorFaseDois);
+		
+		if(contadorFaseUm == 3) {
+			panelCadastrarPerguntas.getCbFase().removeItem("Briófitas");
+		}
+		if(contadorFaseDois == 3) {
+			panelCadastrarPerguntas.getCbFase().removeItem("Pteridófitas");
+		}
+		if(contadorFaseTres == 3) {
+			panelCadastrarPerguntas.getCbFase().removeItem("Gminospermas");
+		}
+		if(contadorFaseQuatro == 3) {
+			panelCadastrarPerguntas.getCbFase().removeItem("Angiospermas");
+		}
+		
+		int total = contadorFaseUm + contadorFaseDois + contadorFaseTres + contadorFaseQuatro;
+		if(total == 12) {
+			framePrincipal.show("pConfig");
+			panelConfig.getBtCadPerguntas().setVisible(false);
+		}
+	}
+	
+	public static void listarPerguntas() {
+		ArrayList<Questao> questoesBanco = GerenciarQuestoes.getInstance().pegarQuestoes();
+		int i = 0;
+		for(Questao questao_ : questoesBanco) {
+			System.out.println(i);
+			panelListarExcluirPerguntas.getTxaListarQuestoes().setText(panelListarExcluirPerguntas.getTxaListarQuestoes().getText() + "Pergunta" + (i+1) + "://" + questao_.toString() + "\n");
+			panelListarExcluirPerguntas.getCbQuestaoExcluir().addItem("Pergunta "+ (i+1));
+			i += 1;
+		}
+		
+	}
+}

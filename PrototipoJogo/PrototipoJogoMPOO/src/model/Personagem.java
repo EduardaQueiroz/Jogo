@@ -97,10 +97,10 @@ public class Personagem extends Sprite {
 	@Override
 	public void setX(int x) {
 		if (!collision(MontarFase.retangulosColisao, x - getX(), 0)) {
-			//super.setX(x);// this.x = x;
-			if(!collision(inimigos, x - getX(), 0)) {
-				super.setX(x);
-			}
+			super.setX(x);// this.x = x;
+//			if(!collision(inimigos, x - getX(), 0)) {
+//				super.setX(x);
+//			}
 		}
 	}
 
@@ -108,10 +108,10 @@ public class Personagem extends Sprite {
 	@Override
 	public void setY(int y) {
 		if (!collision(MontarFase.retangulosColisao, 0, y - getY())) {
-			//super.setY(y);// this.y = y;
-			if(!collision(inimigos, 0, y - getY())) {
-				super.setY(y);
-			}
+			super.setY(y);// this.y = y;
+//			if(!collision(inimigos, 0, y - getY())) {
+//				super.setY(y);
+//			}
 		}
 	}
 }

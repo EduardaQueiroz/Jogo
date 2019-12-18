@@ -107,7 +107,7 @@ public class ControllerTelaPrincipal {
 		panelConfig.getBtCadPerguntas().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				verificarComboBox();
+				verificarComboBoxQuestoes();
 				framePrincipal.show("pCadPerg");
 				ControllerTelaCadPerguntas controllerTelaCadPerguntas = new ControllerTelaCadPerguntas(framePrincipal);
 			}
@@ -117,10 +117,17 @@ public class ControllerTelaPrincipal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				listarPerguntas();
-				//addItemComboBox(qtd);
 				framePrincipal.show("pListExcPerg");
-				System.out.println("oi");
 				ControllerTelaListarExcluirPergunta controllerTelaListarExcluirPergunta = new ControllerTelaListarExcluirPergunta(framePrincipal);
+				
+			}
+		});
+		
+		panelConfig.getBtListarRespostas().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ControllerTelaListarRespostasJogadores controllerTelaListarRespostasJogadores = new ControllerTelaListarRespostasJogadores(framePrincipal);
+				framePrincipal.show("pListResp");
 				
 			}
 		});
@@ -159,7 +166,7 @@ public class ControllerTelaPrincipal {
 		});
 	}
 	
-	public static void verificarComboBox() {
+	public static void verificarComboBoxQuestoes() {
 		int contadorFaseUm = 0;
 		int contadorFaseDois = 0;
 		int contadorFaseTres = 0;
@@ -212,4 +219,6 @@ public class ControllerTelaPrincipal {
 		}
 		
 	}
+	
+	
 }

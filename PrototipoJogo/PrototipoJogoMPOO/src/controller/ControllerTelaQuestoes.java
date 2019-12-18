@@ -45,7 +45,6 @@ public class ControllerTelaQuestoes {
 				if(panelQuestoes.getRdbtOpUm().isSelected()) {
 					String resposta = panelQuestoes.getRdbtOpUm().getText();
 					RespostaJogador respostaJogador = new RespostaJogador(nomeJogador, resposta, pergunta);
-					System.out.println("oi");
 					GerenciarRespostasJogadores.getInstance().salvarResposta(respostaJogador);
 					
 				}else if(panelQuestoes.getRdbtOpDois().isSelected()) {

@@ -1,0 +1,39 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import view.FramePrincipal;
+import view.PanelListarRespostasJogadores;
+
+public class ControllerTelaListarRespostasJogadores {
+	
+	private FramePrincipal framePrincipal;
+	private PanelListarRespostasJogadores panelListarRespostasJogadores;
+	
+	public ControllerTelaListarRespostasJogadores(FramePrincipal framePrincipal) {
+		this.framePrincipal = framePrincipal;
+		this.panelListarRespostasJogadores = framePrincipal.getPanelListarRespostasJogadores();
+		control();
+	}
+	
+	public void control() {
+		
+		panelListarRespostasJogadores.getBtVoltar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				framePrincipal.show("pConfig");
+			}
+		});
+		
+		panelListarRespostasJogadores.getBtListar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
+
+}

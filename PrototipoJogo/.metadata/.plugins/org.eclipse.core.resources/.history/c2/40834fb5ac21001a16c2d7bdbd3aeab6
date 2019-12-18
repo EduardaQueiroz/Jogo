@@ -1,0 +1,54 @@
+package view;
+
+import java.awt.Font;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class PanelListarRespostasJogadores extends JPanel {
+	
+	private JTextArea txaListarRespostas;
+	private JTextField tfEscolha;
+	private JComboBox<String> cbQuestaoExcluir;
+	private JButton btExcluir, btVoltar;
+	
+	private ImageIcon imgBack, imgBtExcluir, imgBtVoltar;
+	
+	public PanelListarRespostasJogadores() {
+		setLayout(null);
+		
+		imgBtExcluir = new ImageIcon(getClass().getResource("imagens/listar.png"));
+		imgBack = new ImageIcon(getClass().getResource("imagens/backListarExcluirResposta.png"));
+		imgBtVoltar = new ImageIcon(getClass().getResource("imagens/voltar.png"));
+		
+		txaListarRespostas = new JTextArea(12, 3);
+		tfEscolha = new JTextField(" Selecione um jogador:");
+		cbQuestaoExcluir = new JComboBox<>();
+		btExcluir = new JButton(imgBtExcluir);
+		btVoltar = new JButton(imgBtVoltar);
+		
+		tfEscolha.setFont(new Font("Times new Roman", Font.BOLD, 20));
+		tfEscolha.setEditable(false);
+		
+		txaListarRespostas.setFont(new Font("Times new Roman", Font.BOLD, 20));
+		txaListarRespostas.setEditable(false);
+		
+		txaListarRespostas.setBounds(100, 160, 800, 380);
+		tfEscolha.setBounds(210, 120, 220, 30);
+		cbQuestaoExcluir.setBounds(440, 120, 200, 30);
+		btExcluir.setBounds(650, 120, 100, 30);
+		btVoltar.setBounds(750, 545, 200, 50);
+		
+		add(txaListarRespostas);
+		add(tfEscolha);
+		add(cbQuestaoExcluir);
+		add(btExcluir);
+		add(btVoltar);
+		
+	}
+
+}

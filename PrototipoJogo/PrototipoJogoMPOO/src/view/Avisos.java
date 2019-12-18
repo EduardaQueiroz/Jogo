@@ -24,4 +24,7 @@ public class Avisos {
 		JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 	}
 	
+	public static void messagemCampoNomeVazio() {
+		JOptionPane.showMessageDialog(null, "Campo SEU NOME vazio. Preencha-o para jogar.");
+	}
 }

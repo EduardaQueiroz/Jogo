@@ -56,7 +56,7 @@ public class ControllerTelaCadPerguntas {
 				}else {
 					Questao questao = new Questao(enunciado, op1, op2, op3, fase, respostaCerta);
 					GerenciarQuestoes.getInstance().salvarQuestao(questao);
-					ControllerTelaPrincipal.verificarComboBox();
+					ControllerTelaPrincipal.verificarComboBoxQuestoes();
 					
 					panelCadastrarPerguntas.getTxaPergunta().setText("");
 					panelCadastrarPerguntas.getTfOpUm().setText("");
